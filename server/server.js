@@ -1,75 +1,66 @@
-// WebSocket kütüphanesini içeri aktarır
 const WebSocket = require('ws');
-
-// Bağlı kullanıcıları yöneten clients modülü
 const clients = require('./clients');
-
-// Bildirim gönderme ve broadcast işlemlerini yapan modül
 const notification = require('./notification');
 
-// 8080 portunda WebSocket server oluşturulur
 const wss = new WebSocket.Server({ port: 8080 });
 
-// Sunucu ayağa kalktığında konsola bilgi basılır
 console.log("🚀 WebSocket server running on ws://localhost:8080");
 
-// Yeni bir client bağlandığında tetiklenir
 wss.on('connection', (ws) => {
 
-    // Client’tan mesaj geldiğinde çalışır
     ws.on('message', (msg) => {
-        // Ham (raw) mesajı string olarak loglar
-        console.log("📩 RAW:", msg.toString());
+        try {
+            console.log("📩 RAW:", msg.toString());
+            const data = JSON.parse(msg.toString());
 
-        // Gelen mesaj JSON formatına çevrilir
-        const data = JSON.parse(msg);
+            responseData.userId = data.userId || null;
+            responseData.type = data.type || "";
+            responseData.message = data.message || "";
+            responseData.date = new Date().toLocaleString("tr-TR");
+            console.log("📩 type", data.type);
+            debugger;
+            if (data.type === "register") {
+                clients.addClient(data.userId, ws);
+                console.log("✅ Registered:", data.userId);
+            }
 
-        // Client kendini sisteme tanıtıyorsa (register)
-        if (data.type === "register") {
-            // Kullanıcı ID + socket eşleştirilir
-            clients.addClient(data.userId, ws);
+            if (data.type === "system-send") {
+                console.log("🔥 Sistem Mesajı:");
+                console.log("🧑‍💻 Gönderiyor:", data.userId);
+                console.log(responseData);
+                notification.direct(data.userId, responseData);
+            }
 
-            // console’a kayıt bilgisi yazılır
-            console.log("✅ Registered:", data.userId);
+             if (data.type === "admin-send") {
+                console.log("🧑‍💻 Admin Gönderiyor:", data.userId);
+
+                notification.direct(data.userId, responseData);
+
+            }
+
+            if (data.type === "broadcast") {
+                console.log("📢 BROADCAST(Tüm Kayıtlı kullanıcılara) GÖNDERİLDİ");
+
+                notification.broadcast(responseData);
+            }
+
+           
+
+        } catch (err) {
+            console.error("❌ Message handling error:", err);
         }
-
-        // Test mesajı geldiyse
-        if (data.type === "test") {
-            console.log("🔥 TEST MESSAGE RECEIVED");
-
-            // Sadece ilgili kullanıcıya bildirim gönderilir
-            notification.direct(data.userId, {
-                type: "info",
-                message: "Test bildirimi 🎯"
-            });
-        }
-
-        // Broadcast mesajı geldiyse
-        if (data.type === "broadcast") {
-            console.log("📢 BROADCAST GÖNDERİLDİ");
-
-            // Sistemdeki tüm kullanıcılara bildirim gönderilir
-            notification.broadcast(
-                "📢 Sistem bakımı 10 dakika sonra başlayacaktır."
-            );
-        }
-        if (data.type === "admin-send") {
-            console.log("🧑‍💻 ADMIN SEND:", data.userId);
-
-            notification.direct(data.userId, {
-                type: "admin",
-                message: data.message
-            });
-        }
-
     });
 
-    // Client bağlantıyı kapattığında çalışır
     ws.on('close', () => {
-        // Socket listeden temizlenir
         clients.removeClient(ws);
-
-        // Konsola bağlantı kopma bilgisi yazılır
         console.log("❌ Client disconnected");
     });
 });
+
+ const responseData = {
+        id: Date.now(),
+        userId: null,
+        type: "",
+        message: "",
+        date: new Date()
+    };

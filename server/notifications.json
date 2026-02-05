@@ -19,5 +19,127 @@
     "type": "admin",
     "message": "",
     "date": "2026-02-05T09:07:04.943Z"
+  },
+  {
+    "id": 1770290396581,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:19:56.581Z"
+  },
+  {
+    "id": 1770290397866,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:19:57.866Z"
+  },
+  {
+    "id": 1770290399978,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:19:59.978Z"
+  },
+  {
+    "id": 1770290405298,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:20:05.298Z"
+  },
+  {
+    "id": 1770290421293,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:20:21.293Z"
+  },
+  {
+    "id": 1770290422328,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:20:22.328Z"
+  },
+  {
+    "id": 1770290440889,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:20:40.889Z"
+  },
+  {
+    "id": 1770290555362,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:22:35.362Z"
+  },
+  {
+    "id": 1770290557800,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:22:37.800Z"
+  },
+  {
+    "id": 1770290693302,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:24:53.302Z"
+  },
+  {
+    "id": 1770290694599,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:24:54.599Z"
+  },
+  {
+    "id": 1770290695762,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:24:55.762Z"
+  },
+  {
+    "id": 1770290769727,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:26:09.727Z"
+  },
+  {
+    "id": 1770290770657,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:26:10.657Z"
+  },
+  {
+    "id": 1770290771129,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:26:11.129Z"
+  },
+  {
+    "id": 1770290771332,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:26:11.332Z"
+  },
+  {
+    "id": 1770290785052,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:26:25.052Z"
+  },
+  {
+    "id": 1770290785889,
+    "type": "info",
+    "message": "📢 Sistem bakımı 10 dakika sonra başlayacaktır.",
+    "date": "2026-02-05T11:26:25.889Z"
+  },
+  {
+    "id": 1770293303603,
+    "userId": "acfdbc30-5339-49fc-9352-fb02f2fc522b",
+    "type": "system-send",
+    "message": "Bu bir test bildirimidir mehmet! 🎯",
+    "date": "05.02.2026 15:08:30"
+  },
+  {
+    "id": 1770293303603,
+    "userId": "acfdbc30-5339-49fc-9352-fb02f2fc522b",
+    "type": "system-send",
+    "message": "Bu bir test bildirimidir mehmet! 🎯",
+    "date": "05.02.2026 15:08:35"
   }
 ]

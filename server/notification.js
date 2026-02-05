@@ -4,36 +4,20 @@ const storage = require('./storage'); // 👈 BU EKSİKTİ
 // 🎯 TEK KULLANICIYA BİLDİRİM
 function direct(userId, data) {
 
-    const payload = {
-        id: Date.now(),
-        userId,
-        type: data.type,
-        message: data.message,
-        date: new Date()
-    };
-
     if (clients.isOnline(userId)) {
-        clients.sendToUser(userId, payload);
+        clients.sendToUser(userId, data);
     } else {
         // Offline ise kaydet
-        storage.save(payload);
+        storage.save(data);
     }
 }
 
 // 📢 HERKESE BİLDİRİM
-function broadcast(message) {
+function broadcast(data) {
+    clients.sendToAll(data);
 
-    const payload = {
-        id: Date.now(),
-        type: "info",
-        message,
-        date: new Date()
-    };
 
-    clients.sendToAll(payload);
-
-    // Broadcast her zaman kaydedilir
-    storage.save(payload);
+    storage.save(data);
 }
 
 module.exports = {

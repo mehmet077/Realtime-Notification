@@ -38,32 +38,25 @@ function isOnline(userId) {
 
 
 // 🔔 TEK KULLANICIYA BİLDİRİM GÖNDERME
-function sendToUser(userId, payload) {
-
+function sendToUser(userId, data) {
+console.log("🚀 sendToUser called");
     // Kullanıcının WebSocket bağlantısını al
     const socket = clients.get(userId);
 
     // Eğer bağlantı varsa mesaj gönder
     if (socket) {
-        socket.send(JSON.stringify({
-            type: "notification", // Client tarafında ayırt etmek için
-            data: payload         // Bildirimin kendisi
-        }));
+        socket.send(JSON.stringify(data));
     }
 }
 
 
 // 📢 TÜM ONLINE KULLANICILARA BİLDİRİM GÖNDERME (BROADCAST)
-function sendToAll(payload) {
+function sendToAll(data) {
 
     // Sistemdeki tüm WebSocket bağlantılarını dolaşır
     for (let socket of clients.values()) {
-
         // Her bir kullanıcıya aynı bildirimi gönderir
-        socket.send(JSON.stringify({
-            type: "notification", // Client tarafında ortak type
-            data: payload
-        }));
+        socket.send(JSON.stringify(data));
     }
 }
 
@@ -84,5 +77,5 @@ module.exports = {
     sendToUser,
 
     // Tüm kullanıcılara bildirim gönderir (broadcast)
-    sendToAll // 👈 kritik fonksiyon
+    sendToAll 
 };
