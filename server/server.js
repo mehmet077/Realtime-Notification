@@ -61,7 +61,6 @@ wss.on('connection', (ws) => {
 });
 
  const responseData = {
-        id: Date.now(),
         userId: null,
         type: "",
         priority: "low",

@@ -40,7 +40,6 @@ const ws = new WebSocket("ws://localhost:8080");
 
     function createMessage({ userId, type, priority = "low", title = "Bildirim", message }) {
         return {
-            id: Date.now(),
             userId,
             type,
             priority,
