@@ -54,7 +54,7 @@ Kullanıcı tarafında bildirimler ekranda toast olarak gösterilir.
 
 ```json
 {
-  "id": 1770297897274,
+  "id": 1,
   "type": "system-send",
   "userId": "acfdbc30-5339-49fc-9352-fb02f2fc522b",
   "title": "Test Bildirimi",
