@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Bildirim Paneli</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #111;
+            color: #fff;
+            padding: 40px;
+        }
+        input, button {
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button {
+            background: #0d6efd;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🔔 Kullanıcıya Bildirim Gönder</h2>
+
+    <input id="userId" placeholder="Kullanıcı ID">
+    <input id="message" placeholder="Mesaj">
+
+    <button onclick="send()">Gönder</button>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8080");
+
+        ws.onopen = () => {
+            console.log("✅ Admin WS connected");
+        };
+
+        function send() {
+            const userId = document.getElementById("userId").value;
+            const message = document.getElementById("message").value;
+
+            ws.send(JSON.stringify({
+                type: "admin-send",
+                userId,
+                message
+            }));
+        }
+    </script>
+
+</body>
+</html>
