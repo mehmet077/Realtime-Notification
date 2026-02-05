@@ -17,6 +17,9 @@ wss.on('connection', (ws) => {
             responseData.type = data.type || "";
             responseData.message = data.message || "";
             responseData.date = new Date().toLocaleString("tr-TR");
+            responseData.title = data.title || "";
+            responseData.priority = data.priority || "low";
+            
             console.log("📩 type", data.type);
             debugger;
             if (data.type === "register") {
@@ -61,6 +64,8 @@ wss.on('connection', (ws) => {
         id: Date.now(),
         userId: null,
         type: "",
+        priority: "low",
+        title:"",
         message: "",
         date: new Date()
     };

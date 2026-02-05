@@ -15,8 +15,6 @@ function direct(userId, data) {
 // 📢 HERKESE BİLDİRİM
 function broadcast(data) {
     clients.sendToAll(data);
-
-
     storage.save(data);
 }
 

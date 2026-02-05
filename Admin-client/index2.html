@@ -1,55 +1,188 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Bildirim Paneli</title>
-    <style>
-        body {
-            font-family: Arial;
-            background: #111;
-            color: #fff;
-            padding: 40px;
-        }
-        input, button {
-            padding: 10px;
-            margin-top: 10px;
-            width: 100%;
-        }
-        button {
-            background: #0d6efd;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Admin Bildirim Paneli</title>
+
+<style>
+:root {
+    --bg: #0b0f19;
+    --card: #151a2d;
+    --primary: #4f8cff;
+    --danger: #ff4d4f;
+    --border: rgba(255,255,255,0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #131a3a, #060914);
+    font-family: "Inter", system-ui, sans-serif;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Panel */
+.panel {
+    width: 420px;
+    background: linear-gradient(180deg, #151a2d, #0f1426);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.55);
+}
+
+/* Header */
+.panel h2 {
+    margin: 0 0 18px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Inputs */
+.field {
+    margin-bottom: 14px;
+}
+
+.field label {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.field input, 
+.field textarea, 
+.field select {
+    width: 100%;
+    background: #0b1022;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    color: #fff;
+    outline: none;
+    transition: 0.2s;
+}
+
+.field textarea {
+    resize: none;
+    height: 80px;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(79,140,255,.15);
+}
+
+/* Button */
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #4f8cff, #6fa8ff);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px rgba(79,140,255,.45);
+}
+
+/* Status */
+.status {
+    margin-top: 14px;
+    font-size: 12px;
+    opacity: 0.75;
+    text-align: center;
+}
+</style>
 </head>
+
 <body>
 
-    <h2>🔔 Kullanıcıya Bildirim Gönder</h2>
+<div class="panel">
+    <h2>🔔 Bildirim Gönder</h2>
 
-    <input id="userId" placeholder="Kullanıcı ID">
-    <input id="message" placeholder="Mesaj">
+    <div class="field">
+        <label>Kullanıcı ID</label>
+        <input id="userId" placeholder="acfdbc30-5339-49fc-9352-fb02f2fc522b">
+    </div>
 
-    <button onclick="send()">Gönder</button>
+    <div class="field">
+        <label>Başlık</label>
+        <input id="title" placeholder="Örn: Sistem Bildirimi">
+    </div>
 
-    <script>
-        const ws = new WebSocket("ws://localhost:8080");
+    <div class="field">
+        <label>Mesaj</label>
+        <textarea id="message" placeholder="Kullanıcıya iletilecek mesaj..."></textarea>
+    </div>
 
-        ws.onopen = () => {
-            console.log("✅ Admin WS connected");
-        };
+    <div class="field">
+        <label>Öncelik</label>
+        <select id="priority">
+            <option value="high">Yüksek</option>
+            <option value="medium">Orta</option>
+            <option value="low">Düşük</option>
+        </select>
+    </div>
 
-        function send() {
-            const userId = document.getElementById("userId").value;
-            const message = document.getElementById("message").value;
+    <button onclick="send()">🚀 Gönder</button>
 
-            ws.send(JSON.stringify({
-                type: "admin-send",
-                userId,
-                message
-            }));
-        }
-    </script>
+    <div class="status" id="status">WS bağlantısı bekleniyor...</div>
+</div>
+
+<script>
+const ws = new WebSocket("ws://localhost:8080");
+const status = document.getElementById("status");
+
+ws.onopen = () => {
+    status.textContent = "✅ WebSocket bağlı";
+};
+
+ws.onerror = () => {
+    status.textContent = "❌ WS bağlantı hatası";
+};
+
+function send() {
+    const userId = document.getElementById("userId").value;
+    const title = document.getElementById("title").value;
+    const message = document.getElementById("message").value;
+    const priority = document.getElementById("priority").value;
+
+    if (!userId || !title || !message) {
+        status.textContent = "⚠️ Kullanıcı ID, başlık ve mesaj zorunlu";
+        return;
+    }
+
+    ws.send(JSON.stringify({
+        type: "admin-send",
+        userId,
+        title,
+        message,
+        priority
+    }));
+
+    status.textContent = "📤 Bildirim gönderildi";
+    document.getElementById("message").value = "";
+}
+</script>
 
 </body>
 </html>

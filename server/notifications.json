@@ -141,5 +141,50 @@
     "type": "system-send",
     "message": "Bu bir test bildirimidir mehmet! 🎯",
     "date": "05.02.2026 15:08:35"
+  },
+  {
+    "id": 1770298502413,
+    "userId": "acfdbc30-5339-49fc-9352-fb02f2fc522b",
+    "type": "admin-send",
+    "priority": "low",
+    "title": "deneme",
+    "message": "12313",
+    "date": "05.02.2026 16:38:03"
+  },
+  {
+    "id": 1770298502413,
+    "userId": "acfdbc30-5339-49fc-9352-fb02f2fc522b",
+    "type": "admin-send",
+    "priority": "low",
+    "title": "deneme",
+    "message": "321313",
+    "date": "05.02.2026 16:38:05"
+  },
+  {
+    "id": 1770298502413,
+    "userId": "acfdbc30-5339-49fc-9352-fb02f2fc522b",
+    "type": "admin-send",
+    "priority": "low",
+    "title": "deneme",
+    "message": "321321",
+    "date": "05.02.2026 16:38:17"
+  },
+  {
+    "id": 1770298502413,
+    "userId": "acfdbc30-5339-49fc-9352-fb02f2fc522b",
+    "type": "admin-send",
+    "priority": "medium",
+    "title": "deneme",
+    "message": "321313",
+    "date": "05.02.2026 16:38:31"
+  },
+  {
+    "id": 1770298502413,
+    "userId": "acfdbc30-5339-49fc-9352-fb02f2fc522b",
+    "type": "admin-send",
+    "priority": "high",
+    "title": "q12e12e1",
+    "message": "2321321321",
+    "date": "05.02.2026 16:38:40"
   }
 ]
